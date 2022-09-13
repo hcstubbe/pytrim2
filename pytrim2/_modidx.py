@@ -5,4 +5,4 @@ d = { 'settings': { 'branch': 'master',
                 'doc_host': 'https://hcstubbe.github.io',
                 'git_url': 'https://github.com/hcstubbe/pytrim2',
                 'lib_path': 'pytrim2'},
-  'syms': {'pytrim2.core': {'pytrim2.core.foo': ('core.html#foo', 'pytrim2/core.py')}}}
+  'syms': {'pytrim2.core': {'pytrim2.core.findAlingments': ('core.html#findalingments', 'pytrim2/core.py')}}}

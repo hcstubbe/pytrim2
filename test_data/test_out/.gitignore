@@ -1,0 +1,4 @@
+*.fastq
+*.fasta
+*.fast5
+*.csv
