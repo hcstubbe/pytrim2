@@ -4,14 +4,6 @@
 __all__ = ['findAlingments', 'align_barcodes', 'decide_barcode_id', 'trim_record', 'sort_records_to_file', 'demultiplex']
 
 # %% ../00_demultiplex.ipynb 3
-# Import dependencies
-from Bio import SeqIO
-from Bio import Align
-from Bio.Seq import Seq
-from Bio.SeqRecord import SeqRecord
-import numpy as np
-
-# %% ../00_demultiplex.ipynb 4
 def findAlingments(seq_record, primer_dict, inward_end, max_alignments):
     "Find alignments for each primer in a sequence record"
     primer_keys = list(primer_dict.keys())
@@ -47,7 +39,7 @@ def findAlingments(seq_record, primer_dict, inward_end, max_alignments):
     
     
 
-# %% ../00_demultiplex.ipynb 6
+# %% ../00_demultiplex.ipynb 5
 def align_barcodes(primer_dict, record_dict, inward_end, max_alignments):
     "Aligne all barcodes in a list of seq records"
     
@@ -61,7 +53,7 @@ def align_barcodes(primer_dict, record_dict, inward_end, max_alignments):
         alingments[i] = findAlingments(seq_i, primer_dict, inward_end, max_alignments)
     return(alingments)
 
-# %% ../00_demultiplex.ipynb 9
+# %% ../00_demultiplex.ipynb 8
 def decide_barcode_id(alginment_arrays):
     "Decide which barcode is best hit; remove if tie"
     
@@ -81,14 +73,14 @@ def decide_barcode_id(alginment_arrays):
         
     return(id_array)
 
-# %% ../00_demultiplex.ipynb 11
+# %% ../00_demultiplex.ipynb 10
 # Trim barcodes of sequence
 def trim_record(seq_record, primer_end_position):
     x = seq_record
     x =  x[primer_end_position:]
     return(x)
 
-# %% ../00_demultiplex.ipynb 13
+# %% ../00_demultiplex.ipynb 12
 def sort_records_to_file(record_dict, primer_dict, output_folder, alginment_arrays, input_file_type):
     "Sort records into new files based on barcodes and name files after barcodes"
     
@@ -104,7 +96,7 @@ def sort_records_to_file(record_dict, primer_dict, output_folder, alginment_arra
         seq_iterator_k = (trim_record(record_dict[record_keys[i]], seq_barcode_end_pos[i]) for i in record_numbers if seq_barcode_ids[i] == k if seq_barcode_match[i] >= 85)
         SeqIO.write(seq_iterator_k, output_folder + "/" + primer_dict[primer_keys[k]].name + "_seqs." + input_file_type, input_file_type)
 
-# %% ../00_demultiplex.ipynb 15
+# %% ../00_demultiplex.ipynb 14
 def demultiplex(input_file, input_file_type, primer_file, primer_file_type, output_folder, max_distance, max_alignments):
     "Run the program"
     

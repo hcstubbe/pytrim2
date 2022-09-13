@@ -17,6 +17,8 @@ pip install pytrim2
 Basic usage
 
 ``` python
+from pytrim2.demultiplex import demultiplex
+
 demultiplex("test_data/test.fasta",
             "fasta",
             "test_data/test_primer.fasta",
