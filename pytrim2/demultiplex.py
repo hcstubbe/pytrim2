@@ -6,8 +6,9 @@ __all__ = ['findAlingments', 'align_barcodes', 'decide_barcode_id', 'trim_record
 # %% ../00_demultiplex.ipynb 3
 def findAlingments(seq_record, primer_dict, inward_end, max_alignments):
     "Find alignments for each primer in a sequence record"
-    primer_keys = list(primer_dict.keys())
   
+    primer_keys = list(primer_dict.keys())
+    
     aligner = Align.PairwiseAligner()
     aligner.match_score = 1.0
     aligner.mismatch_score = 0
@@ -36,13 +37,11 @@ def findAlingments(seq_record, primer_dict, inward_end, max_alignments):
             al_array[i, -1] = np.around(alignments.score/len(seq)*100, 0) # normalized local alingnment score
             
     return(al_array)
-    
-    
 
 # %% ../00_demultiplex.ipynb 5
 def align_barcodes(primer_dict, record_dict, inward_end, max_alignments):
     "Aligne all barcodes in a list of seq records"
-    
+
     record_keys = list(record_dict.keys())
     n_sequences = len(record_keys)
     
@@ -74,8 +73,9 @@ def decide_barcode_id(alginment_arrays):
     return(id_array)
 
 # %% ../00_demultiplex.ipynb 10
-# Trim barcodes of sequence
 def trim_record(seq_record, primer_end_position):
+    "Trim barcodes"
+
     x = seq_record
     x =  x[primer_end_position:]
     return(x)
@@ -98,9 +98,16 @@ def sort_records_to_file(record_dict, primer_dict, output_folder, alginment_arra
 
 # %% ../00_demultiplex.ipynb 14
 def demultiplex(input_file, input_file_type, primer_file, primer_file_type, output_folder, max_distance, max_alignments):
-    "Run the program"
+    "Trim and demultiplex sequencing reads"
     
+    print("Create barcode dictionary")
     primer_dict = SeqIO.index(primer_file, primer_file_type)
+    
+    print("Create sequence dictionary")
     record_dict = SeqIO.index(input_file, input_file_type)
+    
+    print("Align barcodes")
     alginment_arrays = align_barcodes(primer_dict, record_dict, max_distance, max_alignments)
+    
+    print("Sort records to file")
     sort_records_to_file(record_dict, primer_dict, output_folder, alginment_arrays, input_file_type)
