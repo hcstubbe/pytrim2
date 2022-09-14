@@ -28,6 +28,7 @@ def findAlingments(seq_record, primer_dict, inward_end, max_alignments):
     al_array = np.zeros( (n_sequences, array_cols) )
 
     for i in list(range(0, n_sequences, 1)):
+        print(primer_keys[i])
         al = []
         seq = primer_dict[primer_keys[i]].seq        
         alignments = aligner.align(seq_record[0:inward_end], seq)
@@ -54,6 +55,7 @@ def align_barcodes(primer_dict, record_dict, inward_end, max_alignments):
     
     alingments = list( range(0, n_sequences) )
     for i in list(range(0, n_sequences, 1)):
+        print(record_keys[i])
         seq_i = record_dict[record_keys[i]].seq
     
         alingments[i] = findAlingments(seq_i, primer_dict, inward_end, max_alignments)
