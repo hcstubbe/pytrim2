@@ -1,0 +1,23 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "pytrim2",
+    "section": "",
+    "text": "pip install pytrim2"
+  },
+  {
+    "objectID": "index.html#how-to-use",
+    "href": "index.html#how-to-use",
+    "title": "pytrim2",
+    "section": "How to use",
+    "text": "How to use\nfrom pytrim2.demultiplex import demultiplex\n\ndemultiplex(\"test_data/test.fasta\",\n            \"fasta\",\n            \"test_data/test_primer.fasta\",\n            \"fasta\",\n            \"test_data/test_out\",\n            200,\n            5)"
+  },
+  {
+    "objectID": "demultiplex.html",
+    "href": "demultiplex.html",
+    "title": "demultiplex",
+    "section": "",
+    "text": "source\n\nfindAlingments\n\n findAlingments (seq_record, primer_dict, inward_end, max_alignments)\n\nFind alignments for each primer in a sequence record\n\nsource\n\n\nalign_barcodes\n\n align_barcodes (primer_dict, record_dict, inward_end, max_alignments)\n\nAligne all barcodes in a list of seq records\n\nsource\n\n\ndecide_barcode_id\n\n decide_barcode_id (alginment_arrays)\n\nDecide which barcode is best hit; remove if tie\n\nsource\n\n\ntrim_record\n\n trim_record (seq_record, primer_end_position)\n\nTrim barcodes\n\nsource\n\n\nsort_records_to_file\n\n sort_records_to_file (record_dict, primer_dict, output_folder,\n                       alginment_arrays, input_file_type)\n\nSort records into new files based on barcodes and name files after barcodes\n\nsource\n\n\ndemultiplex\n\n demultiplex (input_file, input_file_type, primer_file, primer_file_type,\n              output_folder, max_distance, max_alignments)\n\nTrim and demultiplex sequencing reads"
+  }
+]
