@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "pytrim2"
+  site-url: "https://hcstubbe.github.io/pytrim2"
+  description: "A python program to trim and demultiplex nanopore reads"
+  repo-branch: master
+  repo-url: "https://github.com/hcstubbe/pytrim2"
