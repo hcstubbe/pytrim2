@@ -11,8 +11,8 @@ from Bio.SeqRecord import SeqRecord
 import numpy as np
 
 # %% ../00_demultiplex.ipynb 4
-def findAlingments(seq_record, primer_dict, inward_end, max_alignments):
-    "Find alignments for each primer in a sequence record"
+def findAlingments(seq_in, primer_dict, inward_end, max_alignments):
+    "Find alignments for each primer in a sequence"
   
     primer_keys = list(primer_dict.keys())
     
@@ -31,7 +31,7 @@ def findAlingments(seq_record, primer_dict, inward_end, max_alignments):
         print(primer_keys[i])
         al = []
         seq = primer_dict[primer_keys[i]].seq        
-        alignments = aligner.align(seq_record[0:inward_end], seq)
+        alignments = aligner.align(seq_in[0:inward_end], seq)
         len_alignments = len(alignments)
         if(len_alignments <= max_alignments):
             score = alignments.score
